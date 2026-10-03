@@ -12,7 +12,7 @@ Built as a course/capstone project at the Department of Computer Science, Americ
 - **Local alerts** via buzzer/LED; **cloud telemetry** via WiFi to ThingSpeak/Firebase, with optional Telegram alerts
 - **ML pipeline** (Python/scikit-learn) trains Logistic Regression, Random Forest, HistGradientBoosting, and SVM classifiers on episode-grouped data to avoid train/test leakage
 
-See [`diagrams/wiring-diagram.svg`](diagrams/hardware_diagram.pdf) for the full hardware wiring.
+See [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf) for the full hardware wiring.
 
 ## Repository structure
 
@@ -41,7 +41,7 @@ docs/
 | Push button | Ground-truth fatigue labeling |
 | LED + buzzer | Local alert |
 
-Full pin mapping and wiring is in [`diagrams/wiring-diagram.svg`](diagrams/hardware_diagram.pdf).
+Full pin mapping and wiring is in [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf).
 
 ## Setup
 
