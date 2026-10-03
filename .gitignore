@@ -1,0 +1,14 @@
+# Never commit real credentials
+firmware/secrets.h
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Trained model binaries (large/regenerable - remove this line if you want to keep them tracked)
+*.pkl
