@@ -1,4 +1,7 @@
 # Wearable Fatigue Detection System
+<p align="center">
+  <img src="assets/cover.svg" width="100%" alt="Wearable Fatigue Detection: sensors, microprocessor, detection and alert." />
+</p>
 
 A compact ESP32-based wearable that combines PPG (MAX30102), motion (MPU6050), and single-lead ECG (AD8232) sensing with on-device R-peak detection and a machine learning pipeline to classify worker fatigue in real time.
 
