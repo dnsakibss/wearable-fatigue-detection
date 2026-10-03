@@ -12,22 +12,31 @@ Built as a course/capstone project at the Department of Computer Science, Americ
 - **Local alerts** via buzzer/LED; **cloud telemetry** via WiFi to ThingSpeak/Firebase, with optional Telegram alerts
 - **ML pipeline** (Python/scikit-learn) trains Logistic Regression, Random Forest, HistGradientBoosting, and SVM classifiers on episode-grouped data to avoid train/test leakage
 
-See [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf) for the full hardware wiring.
+See [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf) for the full hardware wiring and [`diagrams/hardware_implementation.pdf`](diagrams/hardware_implementation.pdf) for a photo of the physical build.
 
 ## Repository structure
 
 ```
-firmware/
-  wearable_fatigue_detection.ino   # ESP32 sketch (Arduino IDE)
-  secrets.h.example                # template for WiFi/cloud credentials - copy to secrets.h
-ml/
-  train_fatigue_model.ipynb        # full training pipeline (Colab-ready)
-  train_fatigue_model_local.py     # local/non-Colab equivalent
 diagrams/
-  wiring-diagram.svg               # hardware wiring diagram
-  system-architecture.svg          # data flow / system architecture
+  hardware_diagram.pdf           # full hardware wiring diagram
+  hardware_implementation.pdf    # photo of the physical prototype, components labeled
+  system-architecture.svg        # data flow / system architecture
+  workflow.png                   # on-device sensing -> alert -> logging workflow
 docs/
-  paper.pdf                        # project writeup (add this yourself - see below)
+  paper.pdf                      # project writeup
+firmware/
+  wearable_fatigue_detection/
+    wearable_fatigue_detection.ino   # ESP32 sketch (Arduino IDE)
+  secrets.h.example                  # template for WiFi/cloud credentials - copy to secrets.h
+ml/
+  train_fatigue_model.ipynb          # full training pipeline (Colab-ready)
+  train_fatigue_model_local.py       # local/non-Colab equivalent
+  fatigue_maes.ipynb                 # exploratory/analysis notebook
+  fatigue_maes.ipynb - Colab.pdf     # rendered export of the above, with outputs
+  all_sensors_data_2.csv             # example session log (1Hz summary)
+  ecg_raw_data_2.csv                 # example session log (raw ECG waveform)
+.gitignore
+README.md
 ```
 
 ## Hardware
@@ -41,20 +50,21 @@ docs/
 | Push button | Ground-truth fatigue labeling |
 | LED + buzzer | Local alert |
 
-Full pin mapping and wiring is in [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf).
+Full pin mapping and wiring is in [`diagrams/hardware_diagram.pdf`](diagrams/hardware_diagram.pdf); see [`diagrams/workflow.png`](diagrams/workflow.png) for the end-to-end sensing/alert/logging flow.
 
 ## Setup
 
 ### Firmware
-1. Open `firmware/wearable_fatigue_detection.ino` in Arduino IDE
+1. Open `firmware/wearable_fatigue_detection/wearable_fatigue_detection.ino` in Arduino IDE (Arduino requires the sketch folder name to match the `.ino` filename, hence the nested folder)
 2. Install required libraries: `MAX30105` (SparkFun), `Adafruit MPU6050`, `Adafruit Unified Sensor`, `ArduinoJson`, `WiFiClientSecure` (bundled with ESP32 core)
-3. Copy `firmware/secrets.h.example` to `firmware/secrets.h` and fill in your WiFi SSID/password and (optionally) ThingSpeak/Firebase/Telegram credentials — **secrets.h is gitignored and never committed**
+3. Copy `firmware/secrets.h.example` to `firmware/wearable_fatigue_detection/secrets.h` and fill in your WiFi SSID/password and (optionally) ThingSpeak/Firebase/Telegram credentials — **secrets.h is gitignored and never committed**
 4. Select board: ESP32 Dev Module, select the correct COM port, upload
 
 ### ML pipeline
 1. Open `ml/train_fatigue_model.ipynb` in Google Colab (or run `ml/train_fatigue_model_local.py` locally with `pip install pandas numpy scikit-learn scipy matplotlib joblib`)
-2. Upload your own `all_sensors_*.csv` and `ecg_raw_*.csv` session logs (produced by the firmware's serial logging)
+2. Upload your own session logs, or try the included example session (`ml/all_sensors_data_2.csv` + `ml/ecg_raw_data_2.csv`), produced by the firmware's serial logging
 3. Run all cells — produces trained models, confusion matrices, ROC/PR curves, and feature importance plots
+4. `ml/fatigue_maes.ipynb` (with its rendered PDF export alongside it) contains additional exploratory analysis on the same data
 
 ## Results
 
@@ -81,4 +91,4 @@ See the full project writeup in `docs/paper.pdf` for complete methodology and di
 
 ## License
 
-Add a license of your choice (MIT is a common permissive default for student/academic projects) — create a `LICENSE` file in the repo root via GitHub's built-in license picker when creating the repo.
+Add a license of your choice (MIT is a common permissive default for student/academic projects) — create a `LICENSE` file via GitHub's built-in license picker (Add file → Create new file → name it `LICENSE`).
