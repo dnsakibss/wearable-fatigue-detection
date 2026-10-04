@@ -60,7 +60,7 @@ Full pin mapping and wiring is in [`diagrams/hardware_diagram.pdf`](diagrams/har
 ### Firmware
 1. Open `firmware/wearable_fatigue_detection/wearable_fatigue_detection.ino` in Arduino IDE (Arduino requires the sketch folder name to match the `.ino` filename, hence the nested folder)
 2. Install required libraries: `MAX30105` (SparkFun), `Adafruit MPU6050`, `Adafruit Unified Sensor`, `ArduinoJson`, `WiFiClientSecure` (bundled with ESP32 core)
-3. Copy `firmware/secrets.h.example` to `firmware/wearable_fatigue_detection/secrets.h` and fill in your WiFi SSID/password and (optionally) ThingSpeak/Firebase/Telegram credentials — **secrets.h is gitignored and never committed**
+3. Copy `firmware/secrets.h.example` to `firmware/wearable_fatigue_detection/secrets.h` and fill in your WiFi SSID/password and (optionally) ThingSpeak/Firebase/Telegram credentials **secrets.h is gitignored and never committed**
 4. Select board: ESP32 Dev Module, select the correct COM port, upload
 
 ### ML pipeline
@@ -84,7 +84,7 @@ Random Forest gave the best held-out balance of precision/recall. HistGB had the
 
 ## Known limitations
 
-- Single subject, single 35-minute session — generalizability across people/sessions is untested
+- Single subject, single 35-minute session generalizability across people/sessions is untested
 - Ground truth is self-reported (button press), not a clinically validated fatigue measure
 - Predictions were dominated by PPG heart rate features; ECG and motion contributed comparatively little
 - ECG sampling achieved ~43 Hz in practice (target was ~250 Hz) due to WiFi/I2C loop overhead — sufficient for heart rate, a real limitation for high-precision HRV
