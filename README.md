@@ -91,7 +91,3 @@ Random Forest gave the best held-out balance of precision/recall. HistGB had the
 - On-device alert threshold is a fixed rule, independent of and not validated against the trained classifier
 
 See the full project writeup in `docs/paper.pdf` for complete methodology and discussion.
-
-## License
-
-Add a license of your choice (MIT is a common permissive default for student/academic projects) — create a `LICENSE` file via GitHub's built-in license picker (Add file → Create new file → name it `LICENSE`).
