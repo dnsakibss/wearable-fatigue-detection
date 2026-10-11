@@ -19,24 +19,32 @@ Built as a course/capstone project at the Department of Computer Science, Americ
 ### Workflow
 
 <p align="center">
-  <img src="assets/workflow.png" width="90%" alt="On-device sensing, alert and logging workflow." />
+  <img src="assets/workflow.png" width="50%" alt="On-device sensing, alert and logging workflow." />
 </p>
 
 ### Hardware wiring and build
 
-| Asset | Description |
-|---|---|
-| [`assets/diagram.pdf`](assets/diagram.pdf) | Full hardware wiring diagram |
-| [`assets/hardware.pdf`](assets/hardware.pdf) | Photo of the physical prototype, components labeled |
-| [`assets/workflow.png`](assets/workflow.png) | End-to-end sensing → alert → logging flow |
+**Wiring diagram**
+
+<p align="center">
+  <img src="assets/diagram.png" width="90%" alt="Full hardware wiring diagram: ESP32 connected to MAX30102, MPU6050, AD8232, push button, LED and buzzer." />
+</p>
+
+**Physical prototype**
+
+<p align="center">
+  <img src="assets/hardware.png" width="90%" alt="Photo of the assembled wearable prototype with components labeled." />
+</p>
+
+Vector versions: [`diagram.pdf`](assets/diagram.pdf) · [`hardware.pdf`](assets/hardware.pdf)
 
 ## Repository structure
 
 ```
 assets/
   cover.svg                      # README cover banner
-  diagram.pdf                    # full hardware wiring diagram
-  hardware.pdf                   # photo of the physical prototype, components labeled
+  diagram.png / diagram.pdf      # full hardware wiring diagram
+  hardware.png / hardware.pdf    # photo of the physical prototype, components labeled
   workflow.png                   # on-device sensing -> alert -> logging workflow
   fig_session_timeline.png       # session timeline with button-marked fatigue episodes
 docs/
@@ -67,7 +75,7 @@ README.md
 | Push button | Ground-truth fatigue labeling |
 | LED + buzzer | Local alert |
 
-Full pin mapping and wiring is in [`assets/diagram.pdf`](assets/diagram.pdf); the assembled prototype is shown in [`assets/hardware.pdf`](assets/hardware.pdf).
+Full pin mapping and wiring is in the wiring diagram above ([`diagram.pdf`](assets/diagram.pdf)); the assembled prototype is shown in the photo above ([`hardware.pdf`](assets/hardware.pdf)).
 
 ## Setup
 
